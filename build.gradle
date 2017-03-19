@@ -1,0 +1,84 @@
+apply plugin: "java"
+
+ext {
+    springboot_ver = "1.5.1.RELEASE"
+}
+buildscript {
+    repositories {
+        mavenLocal()
+		jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:1.5.1.RELEASE"
+    }
+}
+apply plugin: "idea"
+apply plugin: "eclipse"
+apply plugin: 'war'
+apply plugin: 'org.springframework.boot'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+webAppDirName = "src/main/webapp"
+
+jar {
+    baseName = 'brand-new'
+    version = "0.1"
+}
+
+repositories {
+    println "repo locating"
+    mavenLocal()
+    mavenCentral()
+    println "repo located"
+}
+configurations {
+    provided
+}
+
+sourceSets {
+    main.compileClasspath += configurations.provided
+    test.compileClasspath += configurations.provided
+    test.runtimeClasspath += configurations.provided
+}
+
+dependencies {
+    compile "org.springframework.boot:spring-boot-starter-web:${springboot_ver}"
+    testCompile "org.springframework.boot:spring-boot-starter-test:1.5.2.RELEASE"
+
+    compile "org.springframework.boot:spring-boot-starter-data-jpa:${springboot_ver}"
+    compile "org.springframework.boot:spring-boot-starter-jersey:${springboot_ver}"
+
+    compile 'com.google.guava:guava:18.0'
+    compile "org.slf4j:slf4j-api:1.7.22"
+
+    compile ("org.apache.commons:commons-dbcp2:2.1.1") {
+        exclude group:"junit"
+        exclude group:"tomcat"
+        exclude group:"org.apache.geronimo.modules"
+    }
+    compile "mysql:mysql-connector-java:5.1.29"
+
+    compile ("org.apache.httpcomponents:httpclient:4.5.2") {
+        exclude module:"commons-logging"
+    }
+    compile "org.projectlombok:lombok:1.16.10"
+    compile 'org.axonframework:axon:3.0.2'
+
+    compile 'io.springfox:springfox-swagger2:2.6.1'
+    compile 'io.springfox:springfox-swagger-ui:2.6.1'
+
+    compile 'io.swagger:swagger-jersey2-jaxrs:1.5.12'
+    compile 'io.swagger:swagger-models:1.5.12'
+}
+
+test.includes = ['org/**']
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+bootRepackage {
+    mainClass = 'org.jackJew.brand.startup.Bootstrap'
+}
