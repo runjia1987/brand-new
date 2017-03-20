@@ -35,6 +35,8 @@ public class DataSourceConfig {
                                  @Value("${username}") String username,
                                  @Value("${password}") String password,
                                  @Value("${maxTotal}") int maxTotal) throws Exception {
+        // apply commons-dbcp2
+        log.info("url: " + url);
         BasicDataSource basicDataSource = new BasicDataSource();
         basicDataSource.setDriverClassName(driverClassName);
         basicDataSource.setUrl(url);

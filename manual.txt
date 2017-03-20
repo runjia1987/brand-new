@@ -1,9 +1,36 @@
-curl -H "X-Requested-By:local" -d "name=Adidas" 127.0.0.1:8080/api/brand/1
+POST /api/brand/create HTTP/1.1
+Host: 127.0.0.1:8080
+Content-Type: application/json
+X-Requested-By: local
+Cache-Control: no-cache
+Postman-Token: dabb85c9-4b5f-0ddb-fa73-d7f89daa9609
 
-curl -H "X-Requested-By:local" -d "name=Nike" 127.0.0.1:8080/api/brand/2
+{
+    "name": "Toyota",
+    "creator": "runjia",
+    "business": "Cars",
+    "headQuarter": "Guangzhou"
+}
+
+POST /api/shop/create HTTP/1.1
+Host: 127.0.0.1:8080
+X-Requested-By: local
+Content-Type: application/json
+Cache-Control: no-cache
+Postman-Token: 3c51c8a0-6788-ad9e-f54f-1c973b7ba132
+
+{
+  "name": "tongyong Shanghai pudong",
+  "address": "pudong sh road 123 no",
+  "manager": "runjia",
+  "brand": { "id" : "11" }
+}
+
 
 
 http://127.0.0.1:8080/api/brand/query/2
+
+http://127.0.0.1:8080/api/shop/query/1
 
 http://127.0.0.1:8080/api/swagger.json
 

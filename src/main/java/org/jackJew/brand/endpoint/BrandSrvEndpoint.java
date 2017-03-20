@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.print.attribute.standard.Media;
+import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -51,8 +53,8 @@ public class BrandSrvEndpoint {
                 .build(); // for test
     }
 
-    @POST
-    @Path("/{id}")
+    //@POST
+    //@Path("/{id}")
     @ResponseBody
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation("create brand")
@@ -65,6 +67,19 @@ public class BrandSrvEndpoint {
                 .creator("RUNJIA")
                 .headQuarter("上海浦东")
                 .build();
+        brandService.save(brand);
+        return brand;
+    }
+
+    @POST
+    @Path("/create")
+    @ResponseBody
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation("create brand")
+    public Brand create2(@Valid Brand brand) {
+        log.info(brand.toString());
+
         brandService.save(brand);
         return brand;
     }

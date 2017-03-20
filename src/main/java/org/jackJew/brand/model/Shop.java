@@ -1,5 +1,7 @@
 package org.jackJew.brand.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;
 import lombok.*;
@@ -21,10 +23,10 @@ import java.util.Date;
 @Table(name = "shop")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @ApiModel
+@ToString
 public class Shop {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Length(min = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column

@@ -32,14 +32,10 @@ public class JerseyConfig extends ResourceConfig {
     public void init() {
         // register filter class
         register(CsrfProtectionFilter.class)
-                .register(EncodingFilter.class)
                 .register(RolesAllowedDynamicFeature.class);
 
         // register exceptionMapper
         register(JerseyExceptionMapper.class);
-
-        // json serializer binding
-        register(JacksonJsonProvider.class);
 
         // register feature
         register(JacksonFeature.class);
@@ -48,8 +44,8 @@ public class JerseyConfig extends ResourceConfig {
         //register(MultiPartFeature.class);  // jersey-server incompatibility cause ClassNotFoundException
         property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true);
 
-        // register endpoint
-        register(BrandSrvEndpoint.class);
+        // scan endpoint
+        packages("org.jackJew.brand.endpoint");
         setApplicationName("brandnew-app");
 
         log.info("JerseyConfig init done.");

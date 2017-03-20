@@ -2,9 +2,11 @@ package org.jackJew.brand.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.web.filter.CharacterEncodingFilter;
 
 /**
  * Created by Jack on 2017/3/18.
@@ -25,5 +27,17 @@ public class EnvConfig {
         ppc.setLocations(configResource);
         log.info("EnvConfig end init.");
         return ppc;
+    }
+
+    @Bean
+    public FilterRegistrationBean characterEncodingFilter() {
+        FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+        CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+        characterEncodingFilter.setForceEncoding(true);
+        characterEncodingFilter.setEncoding("UTF-8");
+
+        registrationBean.setFilter(characterEncodingFilter);
+        registrationBean.setOrder(1);
+        return registrationBean;
     }
 }
