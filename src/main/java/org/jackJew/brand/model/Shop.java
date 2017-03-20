@@ -1,6 +1,7 @@
 package org.jackJew.brand.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import io.swagger.annotations.ApiModel;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
@@ -19,6 +20,7 @@ import java.util.Date;
 @Entity
 @Table(name = "shop")
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@ApiModel
 public class Shop {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

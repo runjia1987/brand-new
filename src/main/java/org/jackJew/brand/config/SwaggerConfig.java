@@ -21,28 +21,13 @@ import java.util.List;
 @Configuration
 @EnableSwagger2
 @Slf4j
-public class SwaggerConfig extends WebMvcConfigurerAdapter {
-
-    @Override
-    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        converters.stream().forEach(
-                (converter) -> log.info("configuredMessageConverters: " + converter.getClass()));
-        super.configureMessageConverters(converters);
-    }
-
-    @Override
-    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-        // This is intended to be used when the Spring MVC {@link DispatcherServlet} is mapped to "/"
-        // thus overriding the Servlet container's default handling of static resources
-        configurer.enable();
-    }
+public class SwaggerConfig {
 
     @Bean
     public Docket restConfig() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .forCodeGeneration(true)
-                .pathMapping("/")
                 .select()
                 .paths(paths())
                 .build()

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 /**
  * Created by Jack on 2017/3/18.
@@ -31,9 +32,11 @@ public class BrandSrvEndpoint {
     @ResponseBody
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation("brand query")
-    public Brand query(@PathParam("id") String brandId) {
+    public Response query(@PathParam("id") String brandId) {
         Preconditions.checkNotNull(brandId);
-        return brandService.queryById(Integer.valueOf(brandId));
+        return Response.status(Response.Status.OK)
+                .entity(brandService.queryById(Integer.valueOf(brandId)))
+                .build();
     }
 
     @GET
@@ -41,9 +44,11 @@ public class BrandSrvEndpoint {
     @ResponseBody
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation("brand display test")
-    public Brand display(@PathParam("id") String brandId) {
+    public Response display(@PathParam("id") String brandId) {
         Preconditions.checkNotNull(brandId);
-        return Brand.builder().id(Integer.parseInt(brandId)).build(); // for test
+        return Response.status(Response.Status.OK)
+                .entity(Brand.builder().id(Integer.parseInt(brandId)).build())
+                .build(); // for test
     }
 
     @POST

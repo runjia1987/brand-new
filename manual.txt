@@ -1,3 +1,10 @@
-curl -H "X-Requested-By:local" -d "name=Adidas" 127.0.0.1:8080/brand/1
+curl -H "X-Requested-By:local" -d "name=Adidas" 127.0.0.1:8080/api/brand/1
 
-curl -H "X-Requested-By:local" -d "name=Nike" 127.0.0.1:8080/brand/2
+curl -H "X-Requested-By:local" -d "name=Nike" 127.0.0.1:8080/api/brand/2
+
+
+http://127.0.0.1:8080/api/brand/query/2
+
+http://127.0.0.1:8080/api/swagger.json
+
+http://127.0.0.1:8080/test/display
