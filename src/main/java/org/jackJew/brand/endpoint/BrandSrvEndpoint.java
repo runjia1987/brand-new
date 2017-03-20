@@ -2,7 +2,7 @@ package org.jackJew.brand.endpoint;
 
 import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
-import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.jackJew.brand.model.Brand;
@@ -19,7 +19,7 @@ import javax.ws.rs.core.MediaType;
  */
 @Path("/brand")
 @Component
-@ApiModel
+@Api
 @Slf4j
 public class BrandSrvEndpoint {
 

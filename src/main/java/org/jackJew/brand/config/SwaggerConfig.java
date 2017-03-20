@@ -1,7 +1,6 @@
 package org.jackJew.brand.config;
 
 import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,8 +8,6 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
@@ -29,7 +26,7 @@ public class SwaggerConfig extends WebMvcConfigurerAdapter {
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         converters.stream().forEach(
-                (converter) -> { log.info("configuredMessageConverters: " + converter.getClass()); });
+                (converter) -> log.info("configuredMessageConverters: " + converter.getClass()));
         super.configureMessageConverters(converters);
     }
 
