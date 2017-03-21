@@ -1,3 +1,5 @@
+use Postman, setting header: X-Requested-By: local
+
 POST /api/brand/create HTTP/1.1
 Host: 127.0.0.1:8080
 Content-Type: application/json

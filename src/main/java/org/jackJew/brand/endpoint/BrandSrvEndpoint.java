@@ -9,10 +9,12 @@ import org.jackJew.brand.model.Brand;
 import org.jackJew.brand.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.print.attribute.standard.Media;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -53,34 +55,26 @@ public class BrandSrvEndpoint {
                 .build(); // for test
     }
 
-    //@POST
-    //@Path("/{id}")
-    @ResponseBody
-    @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation("create brand")
-    public Brand create(@PathParam("id") String brandId, @FormParam("name") String name) {
-        log.info(brandId + "," + name);
-        Preconditions.checkArgument(!Strings.isNullOrEmpty(brandId) && !Strings.isNullOrEmpty(name));
-        Brand brand = Brand.builder().id(Integer.parseInt(brandId))
-                .name(name)
-                .business("主营业务：电子商务，互联网金融中介平台")
-                .creator("RUNJIA")
-                .headQuarter("上海浦东")
-                .build();
-        brandService.save(brand);
-        return brand;
-    }
-
     @POST
     @Path("/create")
     @ResponseBody
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation("create brand")
-    public Brand create2(@Valid Brand brand) {
+    public Brand create(@Valid Brand brand) {
         log.info(brand.toString());
 
         brandService.save(brand);
         return brand;
+    }
+
+    @POST
+    @Path("test")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.TEXT_PLAIN)
+    @ApiOperation("test")
+    public String test(@NotNull @RequestBody String request) {
+        log.info(request);
+        return request;
     }
 }
