@@ -4,7 +4,6 @@ import com.google.common.base.Preconditions;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.jackJew.brand.model.Brand;
 import org.jackJew.brand.model.Shop;
 import org.jackJew.brand.service.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;

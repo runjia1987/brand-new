@@ -1,14 +1,14 @@
 package org.jackJew.brand.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.swagger.annotations.ApiModel;
 import lombok.*;
-import org.hibernate.validator.constraints.Length;
+import org.jackJew.brand.utils.Java8TimeSerializer;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -39,13 +39,13 @@ public class Shop {
     @NotNull
     private String manager;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @JsonSerialize(using = Java8TimeSerializer.class)
     @Column(name = "create_date")
-    private Date createDate;
+    private LocalDateTime createDate;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @JsonSerialize(using = Java8TimeSerializer.class)
     @Column(name = "update_date")
-    private Date updateDate;
+    private LocalDateTime updateDate;
 
     @ManyToOne
     @JoinColumn(name = "brand_id", nullable = false)

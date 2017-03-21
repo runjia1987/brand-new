@@ -1,8 +1,6 @@
 package org.jackJew.brand.service;
 
-import org.jackJew.brand.model.Brand;
 import org.jackJew.brand.model.Shop;
-import org.jackJew.brand.repository.BrandRepository;
 import org.jackJew.brand.repository.ShopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

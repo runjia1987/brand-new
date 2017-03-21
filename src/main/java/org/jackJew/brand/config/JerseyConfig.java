@@ -1,6 +1,5 @@
 package org.jackJew.brand.config;
 
-import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import io.swagger.jaxrs.config.BeanConfig;
 import io.swagger.jaxrs.listing.ApiListingResource;
 import io.swagger.jaxrs.listing.SwaggerSerializers;
@@ -10,10 +9,8 @@ import org.glassfish.jersey.logging.LoggingFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.ServerProperties;
 import org.glassfish.jersey.server.filter.CsrfProtectionFilter;
-import org.glassfish.jersey.server.filter.EncodingFilter;
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 import org.glassfish.jersey.server.validation.ValidationFeature;
-import org.jackJew.brand.endpoint.BrandSrvEndpoint;
 import org.jackJew.brand.utils.JerseyExceptionMapper;
 import org.springframework.context.annotation.Configuration;
 

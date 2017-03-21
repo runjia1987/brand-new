@@ -24,7 +24,9 @@ import java.util.Map;
  * Created by Jack on 2017/3/18.
  */
 @Configuration
-@EnableJpaRepositories(value = {"org.jackJew.brand.repository"})
+@EnableJpaRepositories(value = {"org.jackJew.brand.repository"},
+        entityManagerFactoryRef = "emFactory",
+        transactionManagerRef = "jpaTransactionManager")
 @EnableTransactionManagement
 @Slf4j
 public class DataSourceConfig {
@@ -46,7 +48,7 @@ public class DataSourceConfig {
         return basicDataSource;
     }
 
-    @Bean("entityManagerFactory")
+    @Bean("emFactory")
     @Autowired
     public AbstractEntityManagerFactoryBean entityManagerFactory(DataSource ds,
                                                                  @Value("${entity.basePackages}") String[] basePackages,
@@ -65,7 +67,7 @@ public class DataSourceConfig {
         return entityManagerFactory;
     }
 
-    @Bean(name = "transactionManager")
+    @Bean(name = "jpaTransactionManager")
     @Autowired
     public JpaTransactionManager jpaTransactionManager(EntityManagerFactory entityManagerFactory) {
         JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
@@ -77,7 +79,7 @@ public class DataSourceConfig {
     public FilterRegistrationBean openEntityManagerInViewFilter() {
         FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
         OpenEntityManagerInViewFilter openEntityManagerInViewFilter = new OpenEntityManagerInViewFilter();
-        openEntityManagerInViewFilter.setEntityManagerFactoryBeanName("entityManagerFactory");
+        openEntityManagerInViewFilter.setEntityManagerFactoryBeanName("emFactory");
         filterRegistrationBean.setFilter(openEntityManagerInViewFilter);
         return filterRegistrationBean;
     }

@@ -1,15 +1,15 @@
 package org.jackJew.brand.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.swagger.annotations.ApiModel;
 import lombok.*;
+import org.jackJew.brand.utils.Java8TimeSerializer;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -44,13 +44,13 @@ public class Brand {
     @Column(name = "head_quarter")
     private String headQuarter;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @JsonSerialize(using = Java8TimeSerializer.class)
     @Column(name = "create_date")
-    private Date createDate;
+    private LocalDateTime createDate;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @JsonSerialize(using = Java8TimeSerializer.class)
     @Column(name = "update_date")
-    private Date updateDate;
+    private LocalDateTime updateDate;
 
     @OneToMany(mappedBy = "brand")
     private List<Shop> shops;
