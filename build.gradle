@@ -60,7 +60,7 @@ dependencies {
         exclude group:"tomcat"
         exclude group:"org.apache.geronimo.modules"
     }
-    compile "mysql:mysql-connector-java:5.1.29"
+    compile "mysql:mysql-connector-java:5.1.40"
 
     compile ("org.apache.httpcomponents:httpclient:4.5.2") {
         exclude module:"commons-logging"
