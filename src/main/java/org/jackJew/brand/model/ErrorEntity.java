@@ -3,6 +3,7 @@ package org.jackJew.brand.model;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -10,10 +11,11 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class ErrorEntity {
-    private String status;
-    private String msg;
+  private String status;
+  private String msg;
 
 }
