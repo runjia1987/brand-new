@@ -1,5 +1,6 @@
 package org.jackJew.brand.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.swagger.annotations.ApiModel;
@@ -49,5 +50,6 @@ public class Shop {
 
     @ManyToOne
     @JoinColumn(name = "brand_id", nullable = false)
+    @JsonBackReference
     private Brand brand;
 }

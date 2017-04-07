@@ -1,7 +1,7 @@
 package org.jackJew.brand.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.swagger.annotations.ApiModel;
 import lombok.*;
@@ -23,7 +23,6 @@ import java.util.List;
 @Entity
 @Table(name = "brand")
 @JsonInclude(JsonInclude.Include.NON_NULL)  // only serialize non-null field
-@JsonIgnoreProperties(value = {"shops"})
 @ApiModel
 @ToString
 public class Brand {
@@ -53,6 +52,7 @@ public class Brand {
     private LocalDateTime updateDate;
 
     @OneToMany(mappedBy = "brand")
+    @JsonManagedReference
     private List<Shop> shops;
 
 }
