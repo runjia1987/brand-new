@@ -70,7 +70,6 @@ dependencies {
 
     compile 'io.springfox:springfox-swagger2:2.6.1'
     compile 'io.springfox:springfox-swagger-ui:2.6.1'
-
     compile 'io.swagger:swagger-jersey2-jaxrs:1.5.12'
     compile 'io.swagger:swagger-models:1.5.12'
 }
