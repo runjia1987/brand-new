@@ -25,43 +25,48 @@ import javax.ws.rs.ApplicationPath;
 @Slf4j
 public class JerseyConfig extends ResourceConfig {
 
-    @PostConstruct
-    public void init() {
-        // register filter class
-        register(CsrfProtectionFilter.class)
-                .register(RolesAllowedDynamicFeature.class);
+  /**
+   * init.
+   */
+  @PostConstruct
+  public void init() {
+    // register filter class
+    register(CsrfProtectionFilter.class)
+        .register(RolesAllowedDynamicFeature.class);
 
-        // register exceptionMapper
-        register(JerseyExceptionMapper.class);
+    // register exceptionMapper
+    register(JerseyExceptionMapper.class);
 
-        // register feature
-        register(JacksonFeature.class);
-        register(LoggingFeature.class);
-        register(ValidationFeature.class);
-        //register(MultiPartFeature.class);  // jersey-server incompatibility cause ClassNotFoundException
-        property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true);
+    // register feature
+    register(JacksonFeature.class);
+    register(LoggingFeature.class);
+    register(ValidationFeature.class);
+    // jersey-server incompatibility cause ClassNotFoundException
+    //register(MultiPartFeature.class);
 
-        // scan endpoint
-        packages("org.jackJew.brand.endpoint");
-        setApplicationName("brandnew-app");
+    property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true);
 
-        log.info("JerseyConfig init done.");
+    // scan endpoint
+    packages("org.jackJew.brand.endpoint");
+    setApplicationName("brandnew-app");
 
-        configureSwagger();
-        log.info("Swagger configured.");
-    }
+    log.info("JerseyConfig init done.");
 
-    private void configureSwagger() {
-        register(ApiListingResource.class);
-        register(SwaggerSerializers.class);
+    configureSwagger();
+    log.info("Swagger configured.");
+  }
 
-        BeanConfig config = new BeanConfig();
-        config.setConfigId("Spring boot integration");
-        config.setTitle("Spring boot integration APIs");
-        config.setSchemes(new String[] { "http", "https" });
-        config.setBasePath("/api");
-        config.setResourcePackage("org.jackJew.brand");
-        config.setPrettyPrint(true);
-        config.setScan(true);
-    }
+  private void configureSwagger() {
+    register(ApiListingResource.class);
+    register(SwaggerSerializers.class);
+
+    BeanConfig config = new BeanConfig();
+    config.setConfigId("Spring boot integration");
+    config.setTitle("Spring boot integration APIs");
+    config.setSchemes(new String[] {"http", "https"});
+    config.setBasePath("/api");
+    config.setResourcePackage("org.jackJew.brand");
+    config.setPrettyPrint(true);
+    config.setScan(true);
+  }
 }

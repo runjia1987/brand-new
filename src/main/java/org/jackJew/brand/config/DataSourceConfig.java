@@ -15,72 +15,86 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.persistence.EntityManagerFactory;
-import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
+import javax.persistence.EntityManagerFactory;
+import javax.sql.DataSource;
 
 /**
  * Created by Jack on 2017/3/18.
  */
 @Configuration
 @EnableJpaRepositories(value = {"org.jackJew.brand.repository"},
-        entityManagerFactoryRef = "emFactory",
-        transactionManagerRef = "jpaTransactionManager")
+    entityManagerFactoryRef = "emFactory",
+    transactionManagerRef = "jpaTransactionManager")
 @EnableTransactionManagement
 @Slf4j
 public class DataSourceConfig {
 
-    @Bean
-    public DataSource dataSource(@Value("${driverClassName}") String driverClassName,
-                                 @Value("${url}") String url,
-                                 @Value("${username}") String username,
-                                 @Value("${password}") String password,
-                                 @Value("${maxTotal}") int maxTotal) throws Exception {
-        // apply commons-dbcp2
-        log.info("url: " + url);
-        BasicDataSource basicDataSource = new BasicDataSource();
-        basicDataSource.setDriverClassName(driverClassName);
-        basicDataSource.setUrl(url);
-        basicDataSource.setUsername(username);
-        basicDataSource.setPassword(password);
-        basicDataSource.setMaxTotal(maxTotal);
-        return basicDataSource;
-    }
+  /**
+   * dataSource.
+   */
+  @Bean
+  public DataSource dataSource(@Value("${driverClassName}") String driverClassName,
+                               @Value("${url}") String url,
+                               @Value("${username}") String username,
+                               @Value("${password}") String password,
+                               @Value("${maxTotal}") int maxTotal) throws Exception {
+    // apply commons-dbcp2
+    log.info("url: " + url);
+    BasicDataSource basicDataSource = new BasicDataSource();
+    basicDataSource.setDriverClassName(driverClassName);
+    basicDataSource.setUrl(url);
+    basicDataSource.setUsername(username);
+    basicDataSource.setPassword(password);
+    basicDataSource.setMaxTotal(maxTotal);
+    return basicDataSource;
+  }
 
-    @Bean("emFactory")
-    @Autowired
-    public AbstractEntityManagerFactoryBean entityManagerFactory(DataSource ds,
-                                                                 @Value("${entity.basePackages}") String[] basePackages,
-                                                                 @Value("${hibernate.ejb.naming_strategy}") String strategy,
-                                                                 @Value("${hibernate.jdbc.batch_size}") String jdbcBatchSize) {
-        LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
-        entityManagerFactory.setDataSource(ds);
-        entityManagerFactory.setPackagesToScan(basePackages);
-        entityManagerFactory.setPersistenceProvider(new HibernatePersistenceProvider());
+  /**
+   * entityManagerFactory.
+   */
+  @Bean("emFactory")
+  @Autowired
+  public AbstractEntityManagerFactoryBean entityManagerFactory(DataSource ds,
+                             @Value("${entity.basePackages}") String[] basePackages,
+                             @Value("${hibernate.ejb.naming_strategy}") String strategy,
+                             @Value("${hibernate.jdbc.batch_size}") String jdbcBatchSize) {
+    LocalContainerEntityManagerFactoryBean entityManagerFactory =
+        new LocalContainerEntityManagerFactoryBean();
+    entityManagerFactory.setDataSource(ds);
+    entityManagerFactory.setPackagesToScan(basePackages);
+    entityManagerFactory.setPersistenceProvider(new HibernatePersistenceProvider());
 
-        Map<String, Object> jpaProperties = new HashMap<>();
-        jpaProperties.put("hibernate.ejb.naming_strategy", strategy);
-        jpaProperties.put("hibernate.jdbc.batch_size", jdbcBatchSize);
-        entityManagerFactory.setJpaPropertyMap(jpaProperties);
+    Map<String, Object> jpaProperties = new HashMap<>();
+    jpaProperties.put("hibernate.ejb.naming_strategy", strategy);
+    jpaProperties.put("hibernate.jdbc.batch_size", jdbcBatchSize);
+    entityManagerFactory.setJpaPropertyMap(jpaProperties);
 
-        return entityManagerFactory;
-    }
+    return entityManagerFactory;
+  }
 
-    @Bean(name = "jpaTransactionManager")
-    @Autowired
-    public JpaTransactionManager jpaTransactionManager(EntityManagerFactory entityManagerFactory) {
-        JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
-        jpaTransactionManager.setEntityManagerFactory(entityManagerFactory);
-        return jpaTransactionManager;
-    }
+  /**
+   * JPA transactionManager.
+   */
+  @Bean(name = "jpaTransactionManager")
+  @Autowired
+  public JpaTransactionManager jpaTransactionManager(EntityManagerFactory entityManagerFactory) {
+    JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
+    jpaTransactionManager.setEntityManagerFactory(entityManagerFactory);
+    return jpaTransactionManager;
+  }
 
-    @Bean
-    public FilterRegistrationBean openEntityManagerInViewFilter() {
-        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
-        OpenEntityManagerInViewFilter openEntityManagerInViewFilter = new OpenEntityManagerInViewFilter();
-        openEntityManagerInViewFilter.setEntityManagerFactoryBeanName("emFactory");
-        filterRegistrationBean.setFilter(openEntityManagerInViewFilter);
-        return filterRegistrationBean;
-    }
+  /**
+   * openEntityManagerInViewFilter.
+   */
+  @Bean
+  public FilterRegistrationBean openEntityManagerInViewFilter() {
+    FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
+    OpenEntityManagerInViewFilter openEntityManagerInViewFilter =
+        new OpenEntityManagerInViewFilter();
+    openEntityManagerInViewFilter.setEntityManagerFactoryBeanName("emFactory");
+    filterRegistrationBean.setFilter(openEntityManagerInViewFilter);
+    return filterRegistrationBean;
+  }
 }
