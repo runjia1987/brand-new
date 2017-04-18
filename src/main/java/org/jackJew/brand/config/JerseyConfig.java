@@ -64,6 +64,7 @@ public class JerseyConfig extends ResourceConfig {
     config.setConfigId("Spring boot integration");
     config.setTitle("Spring boot integration APIs");
     config.setSchemes(new String[] {"http", "https"});
+    config.setHost("http://swagger.io/");
     config.setBasePath("/api");
     config.setResourcePackage("org.jackJew.brand");
     config.setPrettyPrint(true);
