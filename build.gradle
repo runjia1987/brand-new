@@ -11,12 +11,52 @@ buildscript {
     }
     dependencies {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:1.5.2.RELEASE"
+
+        classpath 'org.asciidoctor:asciidoctor-gradle-plugin:1.5.3'
+        classpath 'org.asciidoctor:asciidoctorj-pdf:1.5.0-alpha.15'
+        classpath 'io.github.swagger2markup:swagger2markup-gradle-plugin:1.3.1'
     }
 }
 apply plugin: "idea"
 apply plugin: "eclipse"
 apply plugin: 'war'
 apply plugin: 'org.springframework.boot'
+
+// swagger2markup
+apply plugin: 'io.github.swagger2markup'
+apply plugin: 'org.asciidoctor.convert'
+
+convertSwagger2markup {
+    swaggerInput 'http://127.0.0.1:8080/api/swagger.json'
+    outputFile file("${buildDir}/asciidoc/springboot-jpa-cqrs-swagger-markup")
+    config = ['swagger2markup.markupLanguage' : 'ASCIIDOC',
+              'swagger2markup.pathsGroupedBy' : 'AS_IS',
+              'swagger2markup.outputLanguage' : 'ZH' ]
+}
+
+asciidoctorj {
+    version = '1.5.4'
+}
+asciidoctor {
+    logDocuments true
+    dependsOn convertSwagger2markup
+    sourceDir file("${buildDir}/asciidoc")
+    outputDir file("${buildDir}/asciidoc")
+    backends 'html5', 'pdf'
+    attributes doctype: 'book',
+            'source-highlighter': 'coderay',
+            'numbered': true,
+            'toc': 'left',
+            'icons': 'font',
+            'setanchors': '',
+            'idprefix': '',
+            'idseparator': '-',
+            'pdf-stylesdir': file("${projectDir}/external/asciiDoc/theme"),
+            'pdf-style': 'KaiGenGothicCN',
+            'pdf-fontsdir': file("${projectDir}/external/asciiDoc/font")
+}
+convertSwagger2markup.outputs.upToDateWhen { false }
+asciidoctor.outputs.upToDateWhen { false }
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -70,8 +110,8 @@ dependencies {
 
     compile 'io.springfox:springfox-swagger2:2.6.1'
     compile 'io.springfox:springfox-swagger-ui:2.6.1'
-    compile 'io.swagger:swagger-jersey2-jaxrs:1.5.12'
-    compile 'io.swagger:swagger-models:1.5.12'
+    compile 'io.swagger:swagger-jersey2-jaxrs:1.5.13'
+    compile 'io.swagger:swagger-models:1.5.13'
 }
 
 test.includes = ['org/**']

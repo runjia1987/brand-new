@@ -61,7 +61,8 @@ public class JerseyConfig extends ResourceConfig {
     register(SwaggerSerializers.class);
 
     BeanConfig config = new BeanConfig();
-    config.setConfigId("Spring boot integration");
+    config.setDescription("Spring boot-swagger integration");
+    config.setVersion("1.0");
     config.setTitle("Spring boot integration APIs");
     config.setSchemes(new String[] {"http", "https"});
     config.setHost("http://swagger.io/");

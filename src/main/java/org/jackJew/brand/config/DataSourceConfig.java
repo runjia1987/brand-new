@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -78,8 +79,7 @@ public class DataSourceConfig {
    * JPA transactionManager.
    */
   @Bean(name = "jpaTransactionManager")
-  @Autowired
-  public JpaTransactionManager jpaTransactionManager(EntityManagerFactory entityManagerFactory) {
+  public JpaTransactionManager jpaTransactionManager(@Qualifier("emFactory") EntityManagerFactory entityManagerFactory) {
     JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
     jpaTransactionManager.setEntityManagerFactory(entityManagerFactory);
     return jpaTransactionManager;
