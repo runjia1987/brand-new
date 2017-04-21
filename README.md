@@ -2,7 +2,7 @@
 <h3>INTRODUCE</h3>
 Integration composite of Spring-Boot, JAX-RS Jersey, Lombok, Hibernate JPA, Swagger, Axon CQRS framework, Gradle.
 
-<h3>STACK LIST</h3>
+<h3>DEPENDENCY LIST</h3>
 <ul>
 <li> <a href="http://projects.spring.io/spring-boot/" target="_blank">Spring-Boot</a> 1.5.1</li>
 

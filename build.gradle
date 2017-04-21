@@ -63,8 +63,8 @@ targetCompatibility = 1.8
 webAppDirName = "src/main/webapp"
 
 jar {
-    baseName = 'brand-new'
-    version = "0.1"
+    baseName = 'springboot-jpa-cqrs-swagger-markup'
+    version = "1.0"
 }
 
 repositories {
