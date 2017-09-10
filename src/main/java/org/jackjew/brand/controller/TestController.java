@@ -1,4 +1,4 @@
-package org.jackJew.brand.controller;
+package org.jackjew.brand.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/test")
 public class TestController {
 
-    @RequestMapping(method =  RequestMethod.GET, value = "/display")
-    @ResponseBody
-    public String display() {
-        return "test";
-    }
+  @RequestMapping(method = RequestMethod.GET, value = "/display")
+  @ResponseBody
+  public String display() {
+    return "test";
+  }
 }

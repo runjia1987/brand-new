@@ -1,4 +1,4 @@
-package org.jackJew.brand.config;
+package org.jackjew.brand.config;
 
 import com.google.common.base.Predicate;
 

@@ -1,4 +1,4 @@
-package org.jackJew.brand.config;
+package org.jackjew.brand.config;
 
 import lombok.extern.slf4j.Slf4j;
 

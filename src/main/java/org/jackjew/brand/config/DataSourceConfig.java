@@ -1,4 +1,4 @@
-package org.jackJew.brand.config;
+package org.jackjew.brand.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -25,7 +25,7 @@ import javax.sql.DataSource;
  * Created by Jack on 2017/3/18.
  */
 @Configuration
-@EnableJpaRepositories(value = {"org.jackJew.brand.repository"},
+@EnableJpaRepositories(value = {"org.jackjew.brand.repository"},
     entityManagerFactoryRef = "emFactory",
     transactionManagerRef = "jpaTransactionManager")
 @EnableTransactionManagement
@@ -58,9 +58,9 @@ public class DataSourceConfig {
   @Bean("emFactory")
   @Autowired
   public AbstractEntityManagerFactoryBean entityManagerFactory(DataSource ds,
-                             @Value("${entity.basePackages}") String[] basePackages,
-                             @Value("${hibernate.ejb.naming_strategy}") String strategy,
-                             @Value("${hibernate.jdbc.batch_size}") String jdbcBatchSize) {
+                                  @Value("${entity.basePackages}") String[] basePackages,
+                                  @Value("${hibernate.ejb.naming_strategy}") String strategy,
+                                  @Value("${hibernate.jdbc.batch_size}") String jdbcBatchSize) {
     LocalContainerEntityManagerFactoryBean entityManagerFactory =
         new LocalContainerEntityManagerFactoryBean();
     entityManagerFactory.setDataSource(ds);
@@ -79,7 +79,8 @@ public class DataSourceConfig {
    * JPA transactionManager.
    */
   @Bean(name = "jpaTransactionManager")
-  public JpaTransactionManager jpaTransactionManager(@Qualifier("emFactory") EntityManagerFactory entityManagerFactory) {
+  public JpaTransactionManager jpaTransactionManager(
+      @Qualifier("emFactory") EntityManagerFactory entityManagerFactory) {
     JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
     jpaTransactionManager.setEntityManagerFactory(entityManagerFactory);
     return jpaTransactionManager;

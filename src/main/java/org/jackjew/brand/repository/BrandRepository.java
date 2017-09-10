@@ -1,6 +1,6 @@
-package org.jackJew.brand.repository;
+package org.jackjew.brand.repository;
 
-import org.jackJew.brand.model.Brand;
+import org.jackjew.brand.model.Brand;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

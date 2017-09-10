@@ -1,4 +1,4 @@
-package org.jackJew.brand.utils;
+package org.jackjew.brand.utils;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -16,13 +16,13 @@ import java.util.Locale;
  */
 public class Java8TimeSerializer extends JsonSerializer<LocalDateTime> {
 
-    static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
-            .withZone(ZoneId.of("GMT+8"))
-            .withLocale(Locale.CHINA);
+  static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+      .withZone(ZoneId.of("GMT+8"))
+      .withLocale(Locale.CHINA);
 
-    @Override
-    public void serialize(LocalDateTime value, JsonGenerator gen, SerializerProvider serializers)
-            throws IOException, JsonProcessingException {
-        gen.writeString(formatter.format(value));
-    }
+  @Override
+  public void serialize(LocalDateTime value, JsonGenerator gen, SerializerProvider serializers)
+      throws IOException {
+    gen.writeString(formatter.format(value));
+  }
 }

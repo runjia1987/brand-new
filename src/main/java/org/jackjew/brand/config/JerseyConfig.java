@@ -1,4 +1,4 @@
-package org.jackJew.brand.config;
+package org.jackjew.brand.config;
 
 import io.swagger.jaxrs.config.BeanConfig;
 import io.swagger.jaxrs.listing.ApiListingResource;
@@ -11,7 +11,7 @@ import org.glassfish.jersey.server.ServerProperties;
 import org.glassfish.jersey.server.filter.CsrfProtectionFilter;
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 import org.glassfish.jersey.server.validation.ValidationFeature;
-import org.jackJew.brand.utils.JerseyExceptionMapper;
+import org.jackjew.brand.utils.JerseyExceptionMapper;
 import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
@@ -47,8 +47,8 @@ public class JerseyConfig extends ResourceConfig {
     property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true);
 
     // scan endpoint
-    packages("org.jackJew.brand.endpoint");
-    setApplicationName("brandnew-app");
+    packages("org.jackjew.brand.endpoint");
+    setApplicationName("springboot-jpa-cqrs-swagger-markup");
 
     log.info("JerseyConfig init done.");
 
@@ -61,13 +61,13 @@ public class JerseyConfig extends ResourceConfig {
     register(SwaggerSerializers.class);
 
     BeanConfig config = new BeanConfig();
-    config.setDescription("Spring boot-swagger integration");
+    config.setDescription("Spring-boot JPA Swagger integration");
     config.setVersion("1.0");
     config.setTitle("Spring boot integration APIs");
     config.setSchemes(new String[] {"http", "https"});
     config.setHost("http://swagger.io/");
     config.setBasePath("/api");
-    config.setResourcePackage("org.jackJew.brand");
+    config.setResourcePackage("org.jackjew.brand");
     config.setPrettyPrint(true);
     config.setScan(true);
   }

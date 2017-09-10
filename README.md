@@ -1,6 +1,6 @@
-#brand-new
+# springboot-jpa-cqrs-swagger-markup
 <h3>INTRODUCE</h3>
-Integration composite of Spring-Boot, JAX-RS Jersey, Lombok, Hibernate JPA, Swagger, Axon CQRS framework, Gradle.
+Integration composite of Spring-Boot, JAX-RS Jersey, Lombok, Hibernate JPA, Swagger, AsciiDoc, Axon CQRS framework, Gradle.
 
 <h3>DEPENDENCY LIST</h3>
 <ul>
@@ -13,6 +13,8 @@ Integration composite of Spring-Boot, JAX-RS Jersey, Lombok, Hibernate JPA, Swag
 <li> <a href="http://hibernate.org/orm/" target="_blank">Hibernate</a> <a href="http://projects.spring.io/spring-data-jpa/" target="_blank">spring-data-JPA</a></li>
 
 <li> <a href="http://swagger.io/tools/" target="_blank">Swagger</a> (API doc Framework)</li>
+
+<li> <a href="http://asciidoctor.org/docs/what-is-asciidoc/" target="_blank">AsciiDoc</a> (Text processor & tool, better Markdown)</li>
 
 <li> <a href="http://www.axonframework.org/" target="_blank">Axon 3</a> (CQRS & Event-Sourcing Framework)</li>
 

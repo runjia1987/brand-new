@@ -1,4 +1,4 @@
-package org.jackJew.brand.model;
+package org.jackjew.brand.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

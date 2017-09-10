@@ -30,7 +30,7 @@ convertSwagger2markup {
     swaggerInput 'http://127.0.0.1:8080/api/swagger.json'
     outputFile file("${buildDir}/asciidoc/springboot-jpa-cqrs-swagger-markup")
     config = ['swagger2markup.markupLanguage' : 'ASCIIDOC',
-              'swagger2markup.pathsGroupedBy' : 'AS_IS',
+              'swagger2markup.pathsGroupedBy' : 'TAGS',
               'swagger2markup.outputLanguage' : 'ZH' ]
 }
 
@@ -121,5 +121,5 @@ tasks.withType(JavaCompile) {
 }
 
 bootRepackage {
-    mainClass = 'org.jackJew.brand.startup.Bootstrap'
+    mainClass = 'org.jackjew.brand.startup.Bootstrap'
 }

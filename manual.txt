@@ -38,3 +38,7 @@ http://127.0.0.1:8080/api/shop/query/1
 http://127.0.0.1:8080/api/swagger.json
 
 http://127.0.0.1:8080/test/display
+
+build.gradle provides predefined tasks:
+(1) convertSwagger2markup, genetate Asciioc file;
+(2) asciidoctor, convert AsciiDoc to html5 & pdf;

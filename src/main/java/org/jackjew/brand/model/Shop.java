@@ -1,4 +1,4 @@
-package org.jackJew.brand.model;
+package org.jackjew.brand.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -10,7 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.jackJew.brand.utils.Java8TimeSerializer;
+import org.jackjew.brand.utils.Java8TimeSerializer;
 
 import java.time.LocalDateTime;
 import javax.persistence.Column;
